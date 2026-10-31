@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSA Revision Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>DSA Revision Tracker</h1>
+    <p class="tagline">Connect LeetCode. We import what you solved, organise it pattern-wise, and queue what is fading.</p>
+  </header>
+
+  <section class="card" id="auth-card" hidden>
+    <h2>Login</h2>
+    <form id="auth-form">
+      <input type="email" id="a-email" placeholder="Email" required />
+      <input type="password" id="a-password" placeholder="Password" required />
+      <div class="row">
+        <button type="submit">Sign in</button>
+        <button type="button" id="signup-btn" class="ghost">Sign up</button>
+      </div>
+    </form>
+    <p class="msg" id="auth-msg"></p>
+  </section>
+
+  <div id="app" hidden>
+    <section class="stats">
+      <div class="stat"><span class="num" id="stat-total">0</span><span class="label">Tracked</span></div>
+      <div class="stat solved"><span class="num" id="stat-solved">0</span><span class="label">Solved</span></div>
+      <div class="stat partial"><span class="num" id="stat-partial">0</span><span class="label">Partial</span></div>
+      <div class="stat forgotten"><span class="num" id="stat-forgotten">0</span><span class="label">Forgotten</span></div>
+    </section>
+    <p class="center muted" id="lc-stats"></p>
+
+    <section class="card">
+      <h2>LeetCode connection</h2>
+      <div class="row">
+        <input type="text" id="lc-username" placeholder="LeetCode username" />
+        <button id="connect-btn">Connect + import</button>
+        <button id="sync-btn" class="ghost">Sync again</button>
+        <button id="logout-btn" class="ghost" hidden>Logout</button>
+      </div>
+      <p class="msg" id="connect-msg"></p>
+      <details>
+        <summary>Backfill older solves (one-time)</summary>
+        <p class="muted">LeetCode's public API only exposes your latest 20 solves, so older ones need a one-time paste. Copy problem slugs from your LeetCode profile (the part after /problems/, e.g. two-sum), one per line:</p>
+        <textarea id="backfill-text" rows="4" placeholder="two-sum&#10;add-two-numbers"></textarea>
+        <button id="backfill-btn" class="ghost">Import backfill</button>
+      </details>
+    </section>
+
+    <section class="card">
+      <div class="row-between">
+        <h2>My problems</h2>
+        <button id="revise-btn" class="accent">Revise queue: Partial + Forgotten</button>
+      </div>
+      <div class="filters">
+        <input type="text" id="q" placeholder="Search title..." />
+        <select id="filter-status">
+          <option value="">All statuses</option>
+          <option>Solved</option>
+          <option>Partial</option>
+          <option>Forgotten</option>
+        </select>
+        <select id="filter-pattern"><option value="">All patterns</option></select>
+        <label class="check"><input type="checkbox" id="group-pattern" /> Group by pattern</label>
+      </div>
+      <div id="list" class="list"></div>
+      <p id="empty" class="empty" hidden>Nothing here yet. Connect LeetCode above to import your solves.</p>
+    </section>
+  </div>
+
+  <div id="note-modal" class="modal" hidden>
+    <div class="modal-box">
+      <div class="row-between">
+        <h3 id="note-title">Approach note</h3>
+        <button id="note-close" class="ghost">Close</button>
+      </div>
+      <div id="note-saved"></div>
+      <h4>Generate from my code</h4>
+      <select id="note-lang">
+        <option>Java</option><option>Python</option><option>JavaScript</option><option>C++</option><option>C</option>
+      </select>
+      <textarea id="note-code" rows="8" placeholder="Paste your accepted code here..."></textarea>
+      <button id="note-gen">Generate note with AI</button>
+      <p class="msg" id="note-msg"></p>
+      <div id="note-draft" hidden>
+        <label>Simple explanation</label>
+        <textarea id="d-explanation" rows="3"></textarea>
+        <label>Steps (one per line)</label>
+        <textarea id="d-steps" rows="6"></textarea>
+        <label>Complexity</label>
+        <input type="text" id="d-complexity" />
+        <label>Mermaid diagram</label>
+        <textarea id="d-diagram" rows="6"></textarea>
+        <div id="d-preview" class="preview"></div>
+        <button id="note-save">Approve + save note</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>Built with Node.js, Express, Supabase and the LeetCode GraphQL API. AI notes by Gemini.</footer>
+  <script src="app.js"></script>
+</body>
+</html>

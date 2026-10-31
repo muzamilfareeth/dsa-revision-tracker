@@ -1,0 +1,101 @@
+* { box-sizing: border-box; }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  margin: 0; background: #0f1420; color: #e8ecf4;
+}
+header { text-align: center; padding: 32px 16px 8px; }
+header h1 { margin: 0; font-size: 2rem; }
+.tagline { color: #9fb0cc; margin-top: 6px; }
+
+.stats {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  max-width: 860px; margin: 20px auto; padding: 0 16px;
+}
+.stat {
+  background: #1a2233; border: 1px solid #2a3752; border-radius: 12px;
+  padding: 14px 22px; text-align: center; min-width: 130px;
+}
+.stat .num { display: block; font-size: 1.7rem; font-weight: 700; }
+.stat .label { color: #9fb0cc; font-size: 0.85rem; }
+.stat.solved .num { color: #4ade80; }
+.stat.partial .num { color: #facc15; }
+.stat.forgotten .num { color: #f87171; }
+
+.card {
+  background: #161d2c; border: 1px solid #2a3752; border-radius: 14px;
+  max-width: 860px; margin: 16px auto; padding: 20px;
+}
+.card h2 { margin-top: 0; font-size: 1.15rem; }
+.row-between { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+form input, form select, .filters input, .filters select {
+  background: #0f1420; color: #e8ecf4; border: 1px solid #2a3752;
+  border-radius: 8px; padding: 10px; font-size: 0.95rem; width: 100%;
+}
+form button { grid-column: 1 / -1; }
+button {
+  background: #2563eb; color: #fff; border: none; border-radius: 8px;
+  padding: 10px 16px; font-size: 0.95rem; cursor: pointer;
+}
+button:hover { filter: brightness(1.15); }
+button.ghost { background: transparent; border: 1px solid #2a3752; color: #9fb0cc; margin-top: 10px; }
+button.accent { background: #7c3aed; margin-top: 0; }
+button.danger { background: #b91c1c; padding: 6px 10px; font-size: 0.85rem; }
+
+.filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.filters input { flex: 2; } .filters select { flex: 1; }
+.filters button { margin-top: 0; }
+
+.list { display: grid; gap: 10px; }
+.item {
+  background: #0f1420; border: 1px solid #2a3752; border-left: 6px solid #4ade80;
+  border-radius: 10px; padding: 12px 14px;
+  display: flex; justify-content: space-between; gap: 12px; align-items: flex-start;
+}
+.item.Partial { border-left-color: #facc15; }
+.item.Forgotten { border-left-color: #f87171; }
+.item h3 { margin: 0 0 4px; font-size: 1rem; }
+.item h3 a { color: #93c5fd; text-decoration: none; }
+.item h3 a:hover { text-decoration: underline; }
+.meta { color: #9fb0cc; font-size: 0.85rem; }
+.notes { margin: 6px 0 0; font-size: 0.9rem; color: #cbd5e1; }
+.item .actions { display: flex; flex-direction: column; gap: 6px; }
+.item select {
+  background: #1a2233; color: #e8ecf4; border: 1px solid #2a3752;
+  border-radius: 6px; padding: 6px;
+}
+.empty { color: #9fb0cc; text-align: center; }
+footer { text-align: center; color: #64748b; padding: 18px; font-size: 0.85rem; }
+@media (max-width: 600px) { form { grid-template-columns: 1fr; } }
+
+/* v2 additions */
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.row input[type="text"] { flex: 1; min-width: 200px; background: #0f1420; color: #e8ecf4; border: 1px solid #2a3752; border-radius: 8px; padding: 10px; }
+.center { text-align: center; }
+.muted { color: #9fb0cc; font-size: 0.9rem; }
+.msg { color: #93c5fd; min-height: 1.2em; }
+details { margin-top: 14px; }
+details summary { cursor: pointer; color: #93c5fd; }
+textarea {
+  width: 100%; background: #0f1420; color: #e8ecf4; border: 1px solid #2a3752;
+  border-radius: 8px; padding: 10px; font-family: inherit; margin: 8px 0;
+}
+.check { color: #9fb0cc; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; }
+.group-title { margin: 14px 0 2px; color: #93c5fd; font-size: 1rem; }
+.modal {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+  display: flex; align-items: flex-start; justify-content: center; overflow-y: auto; padding: 24px 12px;
+}
+.modal[hidden] { display: none; }
+.modal-box {
+  background: #161d2c; border: 1px solid #2a3752; border-radius: 14px;
+  padding: 20px; width: 100%; max-width: 720px;
+}
+.modal-box label { display: block; margin-top: 10px; color: #9fb0cc; font-size: 0.85rem; }
+.modal-box input[type="text"], .modal-box select {
+  width: 100%; background: #0f1420; color: #e8ecf4; border: 1px solid #2a3752;
+  border-radius: 8px; padding: 10px; margin: 6px 0;
+}
+.preview { background: #0f1420; border: 1px solid #2a3752; border-radius: 8px; padding: 10px; margin: 8px 0; overflow-x: auto; }
+.preview svg { max-width: 100%; height: auto; }
