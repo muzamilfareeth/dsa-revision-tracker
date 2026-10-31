@@ -1,0 +1,1 @@
+{"dependencies":{"@supabase/supabase-js":"^2.57.4","better-sqlite3":"^12.4.1","express":"^4.21.2"},"description":"LeetCode-connected DSA revision system: auto-import solves, pattern-wise organisation, AI approach notes, revise queue.","main":"server.js","name":"dsa-revision-tracker-v2","scripts":{"start":"node server.js"},"version":"2.0.0"}
