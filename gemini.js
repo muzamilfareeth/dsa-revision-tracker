@@ -2,7 +2,7 @@
 // Server-side only: the key never reaches the browser.
 // Model: gemini-2.5-flash (free tier). Returns strict JSON.
 
-const MODEL = "gemini-2.5-flash";
+const MODEL = "gemini-3.8-flash";
 
 function buildPrompt(title, language, code) {
   return `You are helping a student revise Data Structures and Algorithms.
